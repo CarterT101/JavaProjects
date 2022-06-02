@@ -28,6 +28,7 @@ class OuterClass {
     }
 }
 
+// enum represents group of constants
 enum Level {
     LOW,
     MEDIUM,
@@ -39,14 +40,18 @@ public class Main implements Runnable {
     int testVar;
     int testVar1;
     // creating a method. myMethod is name, static means the method belongs to Main class and not object of
-    // Main class. void means that this method does not have to return value.
+    // Main class. static does not have to have an objected created for it.
+    // void means that this method does not have to return value.
     // method must be declared within class
     static void myMethod() {
         System.out.println("Executed the method");
     }
+
+    // method with parameters
     public void fullThrottle(int speed) { System.out.println("This car is going " + speed); }
 
     // creating class constructor for Main class. constructor name MUST match class name
+    // these variables / fields will be initialized in object at creation time
     public Main() {
         testVar = 8;
     }
@@ -93,7 +98,7 @@ public class Main implements Runnable {
         Asus myAsus = new Asus();
         myAsus.turnOn();
 
-        // looping through ENUM using .values() method
+        // for each, looping through ENUM using .values() method
         for (Level myLvl : Level.values()) {
             System.out.println(myLvl);
         }
@@ -121,31 +126,36 @@ public class Main implements Runnable {
         System.out.println("Current Date Time is: " + formattedDate);
         System.out.println("Current Date Time is better formatted: " + formattedDate1);
 
+        // this is a normal array, fixed-size
+        String[] arrayTest = {"Volvo", "Tesla", "BMW"};
+        // this is java.util array, it can be modified, added onto, removed from
         ArrayList<String> cars = new ArrayList<String>(); // creates an Array list
 
         cars.add("Volvo");
         cars.add("Tesla");
         cars.add("BMW");
         cars.add("Ford");
+
         System.out.println(cars);
 
         System.out.println("Cars ArrayList");
-        for (String l : cars) { // for each loop to iterate through Cars list
-            System.out.println(l);
-        }
-
-        cars.remove("Ford");
-        System.out.println("New list after removing method");
+        // for each loop to iterate through Cars list
         for (String l : cars) {
             System.out.println(l);
         }
 
-        System.out.println("Index of Tesla: " + cars.indexOf("Tesla"));
+        cars.remove("Ford");
+        System.out.println("New list after 'removing' method");
+        for (String l : cars) {
+            System.out.println(l);
+        }
+
+        System.out.println("Index of 'Tesla': " + cars.indexOf("Tesla"));
 
         System.out.println("Index 2: " + cars.get(2));
 
         cars.set(2, "Subaru");
-        System.out.println("Index 2 after set method: " + cars.get(2));
+        System.out.println("Index 2 after 'set' method: " + cars.get(2));
         Collections.sort(cars);
         System.out.println("Sorted Cars List: ");
         for (String l : cars) {
@@ -161,14 +171,15 @@ public class Main implements Runnable {
         IOTList.add("Microwave");
         System.out.println("Internet of things list: " + IOTList);
         IOTList.addLast("TV");
-        System.out.println("Add last: " + IOTList);
+        System.out.println("'addLast' method" + IOTList);
 
         // HashMap
 
         HashMap<String, String> capitalCities = new HashMap<String, String>();
         capitalCities.put("Germany", "Berlin");
+        capitalCities.put("United States", "New York");
         System.out.println("HashMap: " + capitalCities);
-        System.out.println(capitalCities.get("Germany"));
+        System.out.println("'.get' method, finding index 'Germany': " + capitalCities.get("Germany"));
         System.out.println(capitalCities.size());
         capitalCities.remove("Germany");
 
@@ -178,22 +189,27 @@ public class Main implements Runnable {
         phones.add("Samsung");
         phones.add("Google");
         System.out.println("This is a Hashset, every item has to be unique: " + phones);
-        System.out.println(".contains() method: " + phones.contains("iPhone"));
+        System.out.println("Does this hashset contain 'iPhone'? finding using '.contains()' method, returns bool: " +
+                phones.contains("iPhone"));
 
-        // Iterator
+        // Iterator, object that cna loop through collections
 
         Iterator<String> itPhones = phones.iterator();
+        System.out.println("Quick way iteration: ");
+        itPhones.forEachRemaining((phone) -> System.out.println(phone));
+
+        // resets 'iterator' iteration
+        itPhones = phones.iterator();
         // prints first item
         System.out.println("First item: " + itPhones.next());
-
         // looping through collection, previous .next() method that was used counts as first,
         // so the only other two items will be looped through in this loop
         while (itPhones.hasNext()) {
             System.out.println(itPhones.next());
         }
 
-        // Wrapper class
-
+        // Wrapper class, way to use primitive data types as objects, must use when using Collection objects, where
+        // primitive types cannot be used as the list can only store objects
         ArrayList<Integer> myNumbers = new ArrayList<Integer>();
         // Wrapper object
         Integer myInt = 5;
