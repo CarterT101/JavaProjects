@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class WarmupTwo {
 
     // given string and int, return larger string that is 'n' copies of string
@@ -89,6 +91,54 @@ public class WarmupTwo {
             // this line says if current two characters in iteration are equal to final two characters,
             // AND we are not on the final two characters of iteration, add to counter
             if (str.substring(i, i+2).equals(str.substring(str.length()-2, str.length())) && i != str.length()-2) {
+                count++;
+            }
+        } return count;
+    }
+
+    // return count of 9 in array
+    public static int arrayCount9(int[] nums) {
+        int count = 0;
+        // loop through array
+        for (int i = 0; i < nums.length; i++) {
+            // if index of iteration equals 9, add to count
+            if (nums[i] == 9) {
+                count++;
+            }
+        } return count;
+    }
+
+    // if one of the first four elements is 9, return true, else return false
+    public static boolean arrayFront9 (int[] nums) {
+        for (int i = 0; i < nums.length; i++) {
+            // returns false if iteration is past 4 meaning the first four elements have not equaled 9 yet
+            if (i == 4) {
+                return false;
+            }
+            if (nums[i] == 9) {
+                return true;
+            }
+        } return false;
+    }
+
+    // return true if sequence 1,2,3 appears in array
+    public static boolean array123(int[] nums) {
+        // checks if array is greater than 3
+        if (nums.length > 3) {
+            // loops through array
+            for (int i = 0; i < nums.length-1; i++) {
+                // if index of i, i + 1, i + 2 equals the sequence 1,2,3, return true, else return false
+                if (nums[i] == 1) if (nums[i+1] == 2) if (nums[i+2] == 3) return true;
+            } return false;
+            // if nums length is equal to 3, and if the sequence is there, return true, else return false;
+        } else if (nums.length == 3) return (nums[0] == 1 && nums[1] == 2 && nums[2] == 3);
+        return false;
+    }
+
+    public static int stringMatch(String a, String b) {
+        int count = 0;
+        for (int i = 0; i < a.length(); i++) {
+            if (a.substring(i, i+1).equals(b.substring(i, i+1))) {
                 count++;
             }
         } return count;
