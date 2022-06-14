@@ -135,13 +135,65 @@ public class WarmupTwo {
         return false;
     }
 
+    // return count of positions where they contain the same length 2 substring in same index positions in strings
     public static int stringMatch(String a, String b) {
+        // makes counter
         int count = 0;
-        for (int i = 0; i < a.length(); i++) {
-            if (a.substring(i, i+1).equals(b.substring(i, i+1))) {
-                count++;
+        // if 'a' string is shorter than 'b' string then it should max the for loop with a so it doesn't go out of
+        // index range
+        if (a.length() < b.length()) {
+            // for every item in a, check if substring 0,2 and so on is equal to the same index of b substring, if so
+            // increase count
+            for (int i = 0; i < a.length()-1; i++) {
+                if (a.substring(i, i+2).equals(b.substring(i, i+2))) {
+                    count++;
+                }
+            } return count;
+        } else {
+            // if "a" isn't shorter than b.length, then continue with this which is the same as above, comparing
+            // substring of 'a' to substring of 'b'
+            for (int i = 0; i < b.length()-1; i++) {
+                if (a.substring(i, i+2).equals(b.substring(i, i+2))) {
+                    count++;
+                }
+            } return count;
+        }
+    }
+
+    // get rid of 'x' unless it is the first or last character in string
+    public static String stringX(String str) {
+        // create empty string
+        String result = "";
+        // loop through string
+        for (int i = 0; i < str.length(); i++) {
+            // if 'i' is at the first index and that character is 'x', add it to result
+            if (i == 0 && str.charAt(0) == 'x') {
+                result += 'x';
+                // if 'i' is at the end of the string and it is equal to 'x', add 'x' to end of string
+            } else if (i == str.length()-1 && str.charAt(str.length()-1) == 'x') {
+                result += 'x';
+            } // if those prior statements aren't true then it should add the
+            // string character the iteration is currently at
+            else if (str.charAt(i) != 'x') {
+                result += str.charAt(i);
             }
-        } return count;
+        } return result;
+    }
+
+    // return string made of chars at indexes 0,1,4,5,8,9, so plus one then plus 3 etc...
+    public static String altPairs(String str) {
+        String result = "";
+        // for loop with i being added onto within loop instead at end of statement 3
+        for (int i = 0; i < str.length(); i = i) {
+            // adding char at string index 'i' to new string
+            result += str.charAt(i);
+            // if i's remainder is 0, it should only add one as it is an even number,
+            // else it should add 3 because it is an odd
+            if (i % 2 == 0) {
+                i += 1;
+            } else i += 3;
+        }
+        return result;
     }
 
     public static void main(String[] args){
@@ -151,6 +203,9 @@ public class WarmupTwo {
 
         int b = WarmupTwo.last2("axxxaaxx");
         System.out.println(b);
+
+        String c = WarmupTwo.altPairs("ThisThatTheOther");
+        System.out.println(c);
 
     }
 }
