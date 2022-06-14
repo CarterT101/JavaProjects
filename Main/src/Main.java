@@ -150,6 +150,8 @@ public class Main implements Runnable {
             System.out.println(l);
         }
 
+
+
         System.out.println("Index of 'Tesla': " + cars.indexOf("Tesla"));
 
         System.out.println("Index 2: " + cars.get(2));
