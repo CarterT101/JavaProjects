@@ -196,6 +196,15 @@ public class WarmupTwo {
         return result;
     }
 
+    // get rid of string "yak" in a given string
+    public static String stringYak(String str) {
+        String result = "";
+        // check if str contains string "yak", if so, replace it with empty character and return result
+        if (str.contains("yak")) {
+            result = str.replace("yak", "");
+        } return result;
+    }
+
     public static void main(String[] args){
 
         boolean a = WarmupTwo.doubleX("x");
@@ -205,6 +214,9 @@ public class WarmupTwo {
         System.out.println(b);
 
         String c = WarmupTwo.altPairs("ThisThatTheOther");
+        System.out.println(c);
+
+        c = WarmupTwo.stringYak("yakpak");
         System.out.println(c);
 
     }
